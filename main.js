@@ -4,7 +4,14 @@ class MyComponent extends Component {
     render() {
         console.log('>>>', this);
         
-        return <div id='rrr'><span>123</span>{this.children}</div>
+        return (
+            <div id='rrr'>
+                <span>123</span>
+                {this.children}
+                {true}
+                {{}}
+            </div>
+        )
     }
 }
 
