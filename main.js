@@ -2,7 +2,9 @@ import ToyReact, {Component} from './ToyReact';
 
 class MyComponent extends Component {
     render() {
-        return <div id='rrr'><span>123</span></div>
+        console.log('>>>', this);
+        
+        return <div id='rrr'><span>123</span>{this.children}</div>
     }
 }
 

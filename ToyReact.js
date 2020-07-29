@@ -44,8 +44,10 @@ export default {
         let element;
 
         if (typeof type === 'string')
+                // type 类型是 string，代表这里是原生的 tag
                 element = new ElementWrapper(type);
         else
+                // type 类型是 class 或 function
                 element = new type();
 
         for (let name in attributes) {
@@ -64,6 +66,7 @@ export default {
                 }
             }
         }
+
         insertChildren(children);
         return element;
     },
