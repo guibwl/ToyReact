@@ -1,6 +1,6 @@
 import ToyReact, {Component} from './ToyReact';
 
-class Square extends React.Component {
+class Square extends Component {
     render() {
       return (
         <button
