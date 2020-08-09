@@ -1,13 +1,41 @@
 import ToyReact, {Component} from './ToyReact';
 
 class Square extends Component {
+    constructor(props) {
+        super(props);
+        
+        this.state = {
+          value: props.value,
+        };
+    }
+
+    componentWillMount() {
+        console.log('componentWillMount Square', this.props.value);
+    }
+
+    componentDidMount() {
+        console.log('componentDidMount Square', this.props.value);
+    }
+    
+    componentWillUpdate() {
+        console.log('componentWillUpdate Square', this.props.value);
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate Square', this.props.value);
+    }
+
     render() {
+      const {value} = this.state;
+
       return (
         <button
           className="square"
-          onClick={() => alert('>>>')}
+          onClick={() => {
+            this.setState({value: this.state.value + 1});
+          }}
         >
-          {this.props.value}
+          {value}
         </button>
       );
     }
@@ -21,6 +49,21 @@ class Board extends Component {
           value={i}
         />
       );
+    }
+
+    componentWillMount() {
+        console.log('componentWillMount');
+    }
+    componentDidMount() {
+        console.log('componentDidMount');
+    }
+  
+    componentWillUpdate() {
+        console.log('componentWillUpdate');
+    }
+
+    componentDidUpdate() {
+        console.log('componentDidUpdate');
     }
   
     render() {
