@@ -63,7 +63,7 @@ export class Component {
             this.componentDidMount();
         this.didMount = true;
     }
-    update(did) {
+    update() {
 
         if (this.didMount && this.componentWillUpdate) 
             this.componentWillUpdate();
@@ -89,9 +89,9 @@ export class Component {
     setState(state) {
         const merge = (oldState, newState) => {
             for (let p in newState) {
-                if (typeof newState[p] === 'object') {
-                    if (oldState[p] !== 'object')
-                        oldState[p] = {};
+                if (typeof newState[p] === 'object' && newState[p] !== null) {
+                    if (typeof oldState[p] !== 'object')
+                        oldState[p] = newState[p] instanceof Array ? [] : {};
                     merge(oldState[p], newState[p]);
                 } else
                     oldState[p] = newState[p];
@@ -103,7 +103,7 @@ export class Component {
 
         merge(this.state, state);
 
-        this.update('did');
+        this.update();
     }
 }
 
@@ -131,7 +131,7 @@ export default {
                     insertChildren(child);
                 } else {
                     if (!(child instanceof Component || child instanceof ElementWrapper))
-                        child = child.toString();
+                        child = child ? child.toString() : '';
                     if (typeof child === 'string')
                         child = new TextWrapper(child);
                     element.appendChild(child);
